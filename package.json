@@ -1,0 +1,16 @@
+{
+  "name": "jsx-and-parameters",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Основы создания компонентов в React.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Build task'",
+    "start": "echo 'Start task'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "22"
+  }
+}
