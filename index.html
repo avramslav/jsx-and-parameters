@@ -17,34 +17,43 @@
   root.render(<App cardData={cardData}/>);
 
   function App({cardData}) {
-    const {name, description, img, price,features} = cardData;
+    return (
+      <section className="rent">
+        <ul className="cards">
+          <Card cardData={cardData}/>
+          <Card cardData={cardData}/>
+          <Card cardData={cardData}/>
+        </ul>
+      </section>
+    );
+  }
+
+  function Card({cardData}) {
+    const {name, description, img, price, features} = cardData;
 
     const formattedPrice = `${price.toLocaleString("ru-RU")} ₽/час`;
 
     const featuresList = features.map((feature, index) => <li>{feature}</li>);
 
     return (
-      <section className="rent">
-        <ul className="cards">
-          <li className="card">
-            <img className="card-img" src={img} width="280" height="140"
-                 alt="Белая двухпалубная яхта"/>
-            <div className="card-content">
-              <h3 className="card-title">{name}</h3>
-              <p className="card-description">{description}</p>
-              <ul className="card-features">
-                {featuresList}
-              </ul>
-            </div>
-            <p className="card-price">
-              <span className="card-price-name">Цена:</span>
-              <span className="card-price-value">{formattedPrice}</span>
-            </p>
-          </li>
-        </ul>
-      </section>
+      <li className="card">
+        <img className="card-img" src={img} width="280" height="140"
+             alt="Белая двухпалубная яхта"/>
+        <div className="card-content">
+          <h3 className="card-title">{name}</h3>
+          <p className="card-description">{description}</p>
+          <ul className="card-features">
+            {featuresList}
+          </ul>
+        </div>
+        <p className="card-price">
+          <span className="card-price-name">Цена:</span>
+          <span className="card-price-value">{formattedPrice}</span>
+        </p>
+      </li>
     );
   }
+
 </script>
 </body>
 </html>
