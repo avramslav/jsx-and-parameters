@@ -14,15 +14,15 @@
 <script type="text/babel">
   const container = document.getElementById('root');
   const root = ReactDOM.createRoot(container);
-  root.render(<App cardData={cardData}/>);
+  root.render(<App cards={cards}/>);
 
-  function App({cardData}) {
+  function App({cards}) {
+    const [firstCardData, secondCardDta] = cards;
     return (
       <section className="rent">
         <ul className="cards">
-          <Card cardData={cardData}/>
-          <Card cardData={cardData}/>
-          <Card cardData={cardData}/>
+          <Card cardData={firstCardData}/>
+          <Card cardData={secondCardDta}/>
         </ul>
       </section>
     );
