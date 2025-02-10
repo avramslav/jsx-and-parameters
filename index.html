@@ -6,6 +6,7 @@
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <link rel="stylesheet" href="./css/style.css"/>
+  <script src="./src/data.js"></script>
   <title>Аренда яхт</title>
 </head>
 <body>
@@ -13,21 +14,13 @@
 <script type="text/babel">
   const container = document.getElementById('root');
   const root = ReactDOM.createRoot(container);
-  root.render(<App/>);
+  root.render(<App cardData={cardData}/>);
 
-  function App() {
-    const name = 'Катер Meridian 401';
-    const description = 'Яхта 401 длиной 12.5 метров и шириной 4.2 метра';
-    const img = './img/photo-card-1.jpg';
+  function App({cardData}) {
+    const {name, description, img, price,features} = cardData;
 
-    const price = 14000;
     const formattedPrice = `${price.toLocaleString("ru-RU")} ₽/час`;
 
-    const features = [
-      '2 каюты',
-      '4 спальных места',
-      'аудиосистема'
-    ];
     const featuresList = features.map((feature, index) => <li>{feature}</li>);
 
     return (
