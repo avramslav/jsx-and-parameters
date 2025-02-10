@@ -17,12 +17,10 @@
   root.render(<App cards={cards}/>);
 
   function App({cards}) {
-    const [firstCardData, secondCardDta] = cards;
     return (
       <section className="rent">
         <ul className="cards">
-          <Card cardData={firstCardData}/>
-          <Card cardData={secondCardDta}/>
+          {cards.map((card, index) => (<Card cardData={card} key={index}/>))}
         </ul>
       </section>
     );
@@ -33,7 +31,7 @@
 
     const formattedPrice = `${price.toLocaleString("ru-RU")} ₽/час`;
 
-    const featuresList = features.map((feature, index) => <li>{feature}</li>);
+    const featuresList = features.map((feature) => <li>{feature}</li>);
 
     return (
       <li className="card">
