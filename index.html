@@ -19,6 +19,7 @@
   function App({cards}) {
     return (
       <section className="rent">
+        <RentHeader/>
         <ul className="cards">
           {cards.map((card, index) => (<Card cardData={card} key={index} isTopSeller={topSellers.includes(card.id)}/>))}
         </ul>
@@ -49,6 +50,22 @@
           <span className="card-price-value">{formattedPrice}</span>
         </p>
       </li>
+    );
+  }
+
+  function RentHeader() {
+    return (
+      <header>
+        <h2>Аренда яхты</h2>
+        <ul className="card-view-buttons">
+          <li className="card-view-item">
+            <button className="card-view-button-grid active" type="button"></button>
+          </li>
+          <li className="card-view-item">
+            <button className="card-view-button-list" type="button"></button>
+          </li>
+        </ul>
+      </header>
     );
   }
 
