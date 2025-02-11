@@ -17,10 +17,11 @@
   root.render(<App cards={cards}/>);
 
   function App({cards}) {
+    const isShownByGrid = true;
     return (
       <section className="rent">
         <RentHeader/>
-        <ul className="cards">
+        <ul className={`cards ${isShownByGrid ? 'list' : ''}`}>
           {cards.map((card, index) => (<Card cardData={card} key={index} isTopSeller={topSellers.includes(card.id)}/>))}
         </ul>
       </section>
