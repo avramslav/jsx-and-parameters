@@ -20,13 +20,13 @@
     return (
       <section className="rent">
         <ul className="cards">
-          {cards.map((card, index) => (<Card cardData={card} key={index}/>))}
+          {cards.map((card, index) => (<Card cardData={card} key={index} isTopSeller={topSellers.includes(card.id)}/>))}
         </ul>
       </section>
     );
   }
 
-  function Card({cardData}) {
+  function Card({cardData, isTopSeller}) {
     const {name, description, img, price, features} = cardData;
 
     const formattedPrice = `${price.toLocaleString("ru-RU")} ₽/час`;
@@ -34,7 +34,7 @@
     const featuresList = features.map((feature) => <li>{feature}</li>);
 
     return (
-      <li className="card">
+      <li className={`card${isTopSeller ? ' card-top-seller' : ''}`}>
         <img className="card-img" src={img} width="280" height="140"
              alt="Белая двухпалубная яхта"/>
         <div className="card-content">
