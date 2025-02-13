@@ -2,9 +2,78 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="./css/style.css"/>
+  <script src="./src/data.js"></script>
   <title>Аренда яхт</title>
 </head>
 <body>
+<div id="root"></div>
+<script type="text/babel">
+  const container = document.getElementById('root');
+  const root = ReactDOM.createRoot(container);
+  root.render(<App cards={cards}/>);
 
+  function App({cards}) {
+    const isShownByGrid = true;
+    const listClassName = `cards ${isShownByGrid ? '' : 'list'}`;
+    return (
+      <section className="rent">
+        <RentHeader isShownByGrid={isShownByGrid}/>
+        <ul className={listClassName}>
+          {cards.map((card, index) => (<Card cardData={card} key={index} isTopSeller={topSellers.includes(card.id)}/>))}
+        </ul>
+      </section>
+    );
+  }
+
+  function Card({cardData, isTopSeller}) {
+    const {name, description, img, price, features} = cardData;
+
+    const formattedPrice = `${price.toLocaleString("ru-RU")} ₽/час`;
+
+    const featuresList = features.map((feature) => <li>{feature}</li>);
+
+    return (
+      <li className={`card${isTopSeller ? ' card-top-seller' : ''}`}>
+        <img className="card-img" src={img} width="280" height="140"
+             alt="Белая двухпалубная яхта"/>
+        <div className="card-content">
+          <h3 className="card-title">{name}</h3>
+          <p className="card-description">{description}</p>
+          <ul className="card-features">
+            {featuresList}
+          </ul>
+        </div>
+        <p className="card-price">
+          <span className="card-price-name">Цена:</span>
+          <span className="card-price-value">{formattedPrice}</span>
+        </p>
+      </li>
+    );
+  }
+
+  function RentHeader({isShownByGrid}) {
+    const buttonGridClassName = `card-view-button-grid ${isShownByGrid ? 'active' : ''}`;
+    const buttonListClassName = `card-view-button-list ${!(isShownByGrid) ? 'active' : ''}`;
+
+    return (
+      <header>
+        <h2>Аренда яхты</h2>
+        <ul className="card-view-buttons">
+          <li className="card-view-item">
+            <button className={buttonGridClassName} type="button"></button>
+          </li>
+          <li className="card-view-item">
+            <button className={buttonListClassName} type="button"></button>
+          </li>
+        </ul>
+      </header>
+    );
+  }
+
+</script>
 </body>
 </html>
